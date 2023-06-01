@@ -4,32 +4,33 @@ var cpf = document.getElementById("cpf").value;
 var senhaInput = document.getElementById("senha");
 var confirmSenha = document.getElementById("confirmarSenha");
 var errorSpan = document.getElementById("errorSenha");
-var cpfErro = document.getElementById("cpfValidationMessage")
+var cpfErro = document.getElementById("cpfValidationMessage");
 
-if (!verificarCPF(cpf)){
+if (!verificarCPF(cpf) || senhaInput.value != confirmSenha.value ){
     
-    cpfErro.textContent = "CPF INVÁLIDO!"
-    return false
-}
-
-else if (verificarCPF(cpf)){
-    cpfErro.textContent = ""
-    return true
-}
+  if (!verificarCPF(cpf)){
+    cpfErro.textContent = "CPF INVÁLIDO!";
+  }
+  else{
+    cpfErro.textContent = "";
+  }
 
 if (senhaInput.value != confirmSenha.value ){
-
-    errorSpan.textContent = "As senhas não coincidem";
-    return false
+  errorSpan.textContent = "As senhas não coincidem";
 }
 else{
-
-    errorSpan.textContent = ""
-    return true;
+  errorSpan.textContent ="";
 }
-
+return false;
 
 }
+else{
+  
+  return true;
+}
+
+}
+
 
 function numeros(input){
 input.value = input.value.replace(/\D/g, '')
